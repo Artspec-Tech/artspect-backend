@@ -15,7 +15,7 @@ class HealthCheckController implements Controller {
   }
 
   private getHealthCheck = (request: Request, response: Response) => {
-    response.send('OK');
+    response.send('Hello');
   };
 
   private postHealthCheck = (request: Request, response: Response) => {
