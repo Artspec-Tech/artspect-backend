@@ -1,12 +1,11 @@
 import { Request, Response, Router } from 'express';
-import { ILogger } from 'src/lib/logger';
 import Controller from 'src/interface/controller.interface';
 
 class HealthCheckController implements Controller {
   public path: string = '/healthcheck';
   public router: Router = Router();
 
-  constructor(private log: ILogger) {
+  constructor() {
     this.initializeRoutes();
   }
 
@@ -16,12 +15,10 @@ class HealthCheckController implements Controller {
   }
 
   private getHealthCheck = (request: Request, response: Response) => {
-    this.log.info('OK');
     response.send('OK');
   };
 
   private postHealthCheck = (request: Request, response: Response) => {
-    console.log(request.body);
     response.send(request.body);
   };
 }

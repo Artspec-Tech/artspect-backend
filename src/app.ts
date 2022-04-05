@@ -1,5 +1,6 @@
-import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
+import * as expressWinston from 'express-winston';
+import * as winston from 'winston';
 import * as express from 'express';
 import Controller from './interface/controller.interface';
 
@@ -32,6 +33,16 @@ class App {
   private initializeMiddlewares() {
     this.app.use(express.json());
     this.app.use(cookieParser());
+    this.app.use(
+      expressWinston.logger({
+        transports: [new winston.transports.Console()],
+        format: winston.format.combine(
+          winston.format.colorize(),
+          winston.format.simple()
+        ),
+        msg: 'HTTP {{req.method}} {{req.url}}'
+      })
+    );
   }
 }
 
