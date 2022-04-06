@@ -10,8 +10,9 @@ class HealthCheckController implements Controller {
   }
 
   private initializeRoutes() {
-    this.router.get(this.path, this.getHealthCheck);
-    this.router.post(this.path, this.postHealthCheck);
+    this.router
+      .get(this.path, this.getHealthCheck)
+      .post(this.path, this.postHealthCheck);
   }
 
   private getHealthCheck = (request: Request, response: Response) => {
